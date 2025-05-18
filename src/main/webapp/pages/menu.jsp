@@ -319,7 +319,7 @@
                             <td class="action-buttons">
                                 <button
                                         class="edit-btn"
-                                    <%-- 1.1.5 Kích hoạt sự kiện onClick, gọi đến hàm showDishEditForm--%>
+                                    <%-- 9.1.1.5 Kích hoạt sự kiện onClick, gọi đến hàm showDishEditForm--%>
                                         onclick="showDishEditForm('${dish.id}', '${dish.menuId}', '${dish.name}', '${dish.description}', ${dish.price}, ${dish.available})"
                                 >
                                     Chỉnh Sửa
@@ -408,7 +408,7 @@
 
 <!-- Script Custom -->
 <script>
-    // 1.1.5 Gọi đến hàm showDishEditForm
+    // 9.1.1.5 Gọi đến hàm showDishEditForm
     // nhận vào các thông tin của món ăn cần chỉnh và hiển thị
     function showDishEditForm(id, menuId, name, description, price, available) {
         document.getElementById("dishEditModal").style.display = "block";
@@ -422,21 +422,21 @@
         document.getElementById("dishUpdatedAt").value = "2025-05-16";
     }
 
-    // 1.1.6 Kích hoạt sự kiện submit của form,
+    // 9.1.1.6 Kích hoạt sự kiện submit của form,
     // Gọi đến hàm checkIsDataValid
     document.getElementById('dishEditForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-            // 1.1.6 Tạo FormData từ form người dùng chỉnh sửa
+            // 9.1.1.6 Tạo FormData từ form người dùng chỉnh sửa
             let formData = new URLSearchParams(new FormData(this));
             let url = `${pageContext.request.contextPath}/edit-dish`
 
-            // 1.1.7 Gọi đến hàm checkIsDataValid nhận vào tên và giá món ăn
-            // 1.2.6 return true (Dữ liệu hợp lệ)
-            // 1.2.16 return false (Dữ liệu không hợp lệ)
+            // 9.1.1.7 Gọi đến hàm checkIsDataValid nhận vào tên và giá món ăn
             if (!checkIsValidData(formData.get('dishName'), formData.get('dishPrice'))) return;
+            // 9.1.2.6 return true (Dữ liệu hợp lệ)
+            // 9.1.2.16 return false (Dữ liệu không hợp lệ)
 
             try {
-                // 1.2.8 Gửi fetch request POST đến /edit-dish
+                // 9.1.2.8 Gửi fetch request POST đến /edit-dish
                 // (Headers: application/x-www-form-urlencoded,Body: formData)
                 let response = await fetch(url, {
                     method: 'Post',
@@ -448,13 +448,12 @@
 
                 let result = await response.json();
 
-
                 if (result.isSuccess) {
-                    // 1.3.3 Hiển thị alert("Cập nhật thành công")
+                    // 9.1.3.3 Hiển thị alert("Cập nhật thành công")
                     alert('Cập nhật thành công')
                     window.location.reload()
                 } else {
-                    // 1.3.6 Hiển thị alert("Cập nhật thất bại")
+                    // 9.1.3.6 Hiển thị alert("Cập nhật thất bại")
                     alert('Cập nhật thất bại')
                     window.location.reload()
                 }
