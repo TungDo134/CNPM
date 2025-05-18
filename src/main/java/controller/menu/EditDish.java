@@ -16,7 +16,7 @@ public class EditDish extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // 1.2.9 Lấy thông tin món ăn cần cập nhật từ FormData
+        // 9.1.2.9 Lấy thông tin món ăn cần cập nhật từ FormData
         String dishId = request.getParameter("dishId");
         String dishMenuId = request.getParameter("dishMenuId");
         String dishName = request.getParameter("dishName");
@@ -25,7 +25,7 @@ public class EditDish extends HttpServlet {
         String dishImg = request.getParameter("dishImg");
         String dishAvailableStr = request.getParameter("dishAvailable");
 
-        // 1.2.10 Parse and check data
+        // 9.1.2.10 Parse and check data
         int id = Integer.parseInt(dishId);
         int menuId = Integer.parseInt(dishMenuId);
         int price = Integer.parseInt(dishPriceStr);
@@ -37,7 +37,7 @@ public class EditDish extends HttpServlet {
         }
         Date updatedAt = new Date();
 
-        // 1.2.11 Tạo và set thuộc tính cho đối tượng Dish
+        // 9.1.2.11 Tạo và set thuộc tính cho đối tượng Dish
         Dish dish = new Dish();
         dish.setId(id);
         dish.setMenuId(menuId);
@@ -48,13 +48,13 @@ public class EditDish extends HttpServlet {
         dish.setAvailable(Integer.parseInt(dishAvailableStr));
         dish.setUpdatedAt(updatedAt);
 
-        // 1.2.12 Gọi hàm cập nhật món ăn có tham số là món ăn cần cập nhật
+        // 9.1.2.12 Gọi hàm cập nhật món ăn có tham số là món ăn cần cập nhật
         MenuService menuService = new MenuService();
         boolean isSuccess = menuService.updateDish(dish);
 
         JsonObject jsonObject = new JsonObject();
-        // 1.3.2 Trả về JSON (isSuccess: True)
-        // 1.3.5 Trả về JSON (isSuccess: False)
+        // 9.1.3.2 Trả về JSON (isSuccess: True)
+        // 9.1.3.5 Trả về JSON (isSuccess: False)
         jsonObject.addProperty("isSuccess", isSuccess);
 
         Gson gson = new Gson();
