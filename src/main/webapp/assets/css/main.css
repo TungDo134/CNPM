@@ -1,4 +1,11 @@
-/*Template Name: Fruitkha - Responsive Bootstrap4 Shop TemplateTemplate URI: Description: Bootstrap template for fruits or any other kind of shopAuthor: Imran HossainAuthor URI: https://imransdesign.com/Version: 1.0*/
+/*
+Template Name: Fruitkha - Responsive Bootstrap4 Shop Template
+Template URI: 
+Description: Bootstrap template for fruits or any other kind of shop
+Author: Imran Hossain
+Author URI: https://imransdesign.com/
+Version: 1.0
+*/
 /* -----------------------------------------------------------------------------
 
 # Base - Genral & Typography
@@ -2178,9 +2185,9 @@ a.video-play-btn {
   background-image: url(../img/team/team-3.jpg);
 }
 
-.team-bg-4 {
-  background-image: url(../img/team/team-4.jpg);
-}
+/*.team-bg-4 {*/
+/*  background-image: url(../img/team/team-4.jpg);*/
+/*}*/
 
 .team-bg {
   height: 400px;
@@ -2747,4 +2754,46 @@ table.order-details tbody td {
   display: table-cell;
   vertical-align: middle;
   width: 100%;
+}
+
+#search-suggestions .suggestion-item {
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+#search-suggestions .suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.suggestion-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.suggestion-item .info {
+  flex-grow: 1;
+}
+
+.suggestion-item .name {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.suggestion-item .description {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.suggestion-item .price {
+  font-weight: 600;
+  color: #e91e63;
 }
