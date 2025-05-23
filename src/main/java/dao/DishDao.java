@@ -11,4 +11,15 @@ public class DishDao {
                 (handle.createQuery("select * from dishes").mapToBean(Dish.class).list())
         );
     }
+
+    // 20.2.4: Tìm món ăn theo từ khóa
+    public List<Dish> findDishes(String keyword) {
+        System.out.println("==> [DishDao] Searching for keyword: " + keyword);
+        return JDBIContext.getJdbi().withHandle(handle ->
+                handle.createQuery("SELECT * FROM dishes WHERE name LIKE :keyword")
+                        .bind("keyword", "%" + keyword + "%")
+                        .mapToBean(Dish.class)
+                        .list()
+        );
+    }
 }

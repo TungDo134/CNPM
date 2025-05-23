@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+ <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -14,27 +14,28 @@
     <title>Fruitkha</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
-    <!-- google font -->
+    <link rel="shortcut icon" type="image/png" href="${pageContext.request.contextPath}/assets/img/favicon.png">
+    <!-- google font (link trực tiếp nên giữ nguyên) -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- fontawesome -->
-    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/all.min.css">
     <!-- bootstrap -->
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
     <!-- owl carousel -->
-    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.carousel.css">
     <!-- magnific popup -->
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/magnific-popup.css">
     <!-- animate css -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/animate.css">
     <!-- mean menu css -->
-    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/meanmenu.min.css">
     <!-- main style -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
     <!-- responsive -->
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/responsive.css">
 
+    <script src="assets/js/search.js"></script>
 </head>
 <body>
 
@@ -121,16 +122,24 @@
             <div class="col-lg-12">
                 <span class="close-btn"><i class="fas fa-window-close"></i></span>
                 <div class="search-bar">
-                    <div class="search-bar-tablecell">
+                    <div class="search-bar-tablecell" style="position: relative;">
                         <h3>Search For:</h3>
-                        <input type="text" placeholder="Keywords">
-                        <button type="submit">Search <i class="fas fa-search"></i></button>
+
+                        <form id="searchForm" method="get" action="${pageContext.request.contextPath}/search" autocomplete="off">
+                            <input type="text" id="search-input" name="keyword" placeholder="Nhập từ khóa"/>
+                            <button type="submit">Search <i class="fas fa-search"></i></button>
+                        </form>
+
+                        <div id="search-suggestions"
+                             style="position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; width: 300px; display:none; z-index: 999;">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- end search area -->
 
 <!-- hero area -->
