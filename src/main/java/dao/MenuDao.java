@@ -25,7 +25,7 @@ public class MenuDao {
     // Cập nhật món ăn xuống csdl
     public boolean updateDish(Dish dish) {
         return JDBIContext.getJdbi().withHandle(handle -> {
-            // 9.1.2.14 Thực hiện câu truy vấn (Update) xuống mysql để cập nhật Dish
+            // 9.1.2.8 Thực hiện câu truy vấn (Update) xuống mysql để cập nhật Dish
             int updatedRows = handle.createUpdate("UPDATE dishes SET menuId = ?, name = ?, description = ?, price = ?, img = ?, available = ?, updatedAt = ? WHERE id = ?")
                     .bind(0, dish.getMenuId())
                     .bind(1, dish.getName())
@@ -36,6 +36,8 @@ public class MenuDao {
                     .bind(6, dish.getUpdatedAt())
                     .bind(7, dish.getId())
                     .execute();
+            // 9.1.2.9 return row affected (số dòng bị ảnh hưởng
+            // hay đơn giản là số món ăn đã được cập nhật)
             return updatedRows > 0;
         });
     }

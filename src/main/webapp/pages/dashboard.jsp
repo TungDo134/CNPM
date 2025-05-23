@@ -41,6 +41,8 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
+
+            <%--Todo:  9.1.1.2 Chọn "Quản lí menu và món ăn" --%>
             <li class="nav-item">
                 <a class="nav-link  " href="<%=request.getContextPath()%>/menu/load-menu">
                     <span class="nav-link-text ms-1">Quản lí menu và món ăn</span>
