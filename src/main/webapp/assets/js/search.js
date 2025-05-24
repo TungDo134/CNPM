@@ -9,7 +9,8 @@ input.addEventListener('input', () => {
         return;
     }
 
-    fetch(`${window.location.origin}${'${pageContext.request.contextPath}'}/search?keyword=` + encodeURIComponent(keyword))
+    // 20.4.1: Gợi ý người dùng nhập lại từ khóa mới sau khi không có kết quả
+    fetch(`${contextPath}/search-suggest?keyword=` + encodeURIComponent(keyword))
         .then(response => response.json())
         .then(data => {
             if (data.length === 0) {

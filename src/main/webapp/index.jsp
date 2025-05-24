@@ -36,6 +36,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/responsive.css">
 
     <script src="assets/js/search.js"></script>
+    <script>
+        const contextPath = '${pageContext.request.contextPath}';
+    </script>
     <style>
         body{
             font-family:  Arial, sans-serif;
@@ -133,6 +136,7 @@
                             </li>
                         </ul>
                     </nav>
+                    <%--20.1.1: Hệ thống hiển thị icon tìm kiếm ở trang chính--%>
                     <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                     <div class="mobile-menu"></div>
                     <!-- menu end -->
@@ -152,7 +156,8 @@
                 <div class="search-bar">
                     <div class="search-bar-tablecell" style="position: relative;">
                         <h3>Search For:</h3>
-
+                        <!-- 20.2.1: Người dùng nhập từ khóa vào thanh tìm kiếm -->
+                        <!-- 20.2.2: Người dùng nhấn nút tìm kiếm hoặc Enter -->
                         <form id="searchForm" method="get" action="${pageContext.request.contextPath}/search" autocomplete="off">
                             <input type="text" id="search-input" name="keyword" placeholder="Nhập từ khóa"/>
                             <button type="submit">Search <i class="fas fa-search"></i></button>
