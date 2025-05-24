@@ -1,5 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +34,26 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <!-- responsive -->
   <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    .shopping-cart {
+      position: relative;
+      display: inline-block;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: 15px;
+      right: 2px;
+      background-color: red;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+      line-height: 1;
+    }
+
+  </style>
 
 </head>
 <body>
@@ -61,9 +83,9 @@
           <!-- menu start -->
           <nav class="main-menu">
             <ul>
-              <li class="current-list-item"><a href="#">Home</a>
+              <li class="current-list-item"><a href="/index">Home</a>
                 <ul class="sub-menu">
-                  <li><a href="index.html">Static Home</a></li>
+                  <li><a href="/index">Static Home</a></li>
                   <li><a href="index_2.html">Slider Home</a></li>
                 </ul>
               </li>
@@ -96,7 +118,12 @@
               </li>
               <li>
                 <div class="header-icons">
-                  <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                  <a class="shopping-cart" href="cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <c:if test="${totalQuantity > 0}">
+                      <span class="cart-count">${totalQuantity}</span>
+                    </c:if>
+                  </a>
                   <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                 </div>
               </li>
@@ -152,31 +179,41 @@
     <div class="row">
       <div class="col-lg-8 col-md-12">
         <div class="cart-table-wrap">
-          <table class="cart-table">
-            <thead class="cart-table-head">
-            <tr class="table-head-row">
-              <th class="product-remove"></th>
-              <th class="product-image">Product Image</th>
-              <th class="product-name">Name</th>
-              <th class="product-price">Price</th>
-              <th class="product-quantity">Quantity</th>
-              <th class="product-total">Total</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${cart}" var="c">
-            <tr class="table-body-row">
-              <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-              <td class="product-image"><img src="${c.dish.img}" alt=""></td>
-              <td class="product-name">${c.dish.name}</td>
-              <td class="product-price">${c.dish.price}</td>
-              <td class="product-quantity">${c.quantity}</td>
-              <td class="product-total">${c.dish.price * c.quantity}</td>
-            </tr>
-
-            </tbody>
-          </table>
-          </c:forEach>
+          <c:if test="${not empty cart}">
+            <table class="cart-table">
+              <thead class="cart-table-head">
+              <tr class="table-head-row">
+                <th class="product-remove"></th>
+                <th class="product-image">Product Image</th>
+                <th class="product-name">Name</th>
+                <th class="product-price">Price</th>
+                <th class="product-quantity">Quantity</th>
+                <th class="product-total">Total</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!--5.1.13 Hiển thị trang danh sách các sản phẩm người dùng đã chọn. Trang giỏ hàng có: tên sản phẩm, số lượng, đơn giá vừa thêm vào.-->
+              <c:forEach items="${cart}" var="c">
+                <tr class="table-body-row">
+                  <td class="product-remove">
+                    <a href="#"><i class="far fa-window-close"></i></a>
+                  </td>
+                  <td class="product-image">
+                    <img src="${c.dish.img}" alt="" style="width: 30px;">
+                  </td>
+                  <td class="product-name">${c.dish.name}</td>
+                  <td class="product-price"><f:formatNumber currencySymbol="đ" value="${c.dish.price}"/>VNĐ</td>
+                  <td class="product-quantity">${c.quantity}</td>
+                  <td class="product-total"><f:formatNumber currencySymbol="đ" value="${c.dish.price * c.quantity}"/>VNĐ</td>
+                </tr>
+              </c:forEach>
+              </tbody>
+            </table>
+          </c:if>
+          <!--5.13.1 Hiển thị "Giỏ hàng trống"-->
+          <c:if test="${empty cart}">
+            <p style="font-size: 24px; font-weight: bold; text-align: center;">Giỏ hàng trống</p>
+          </c:if>
         </div>
       </div>
 
