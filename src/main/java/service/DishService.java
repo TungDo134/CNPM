@@ -17,9 +17,4 @@ public class DishService {
             return null;
         }
     }
-
-    // 20.2.4: Gọi DAO để tìm kiếm trong DB
-    public List<Dish> searchDishes(String keyword) {
-        return dao.findDishes(keyword);
-    }
 }

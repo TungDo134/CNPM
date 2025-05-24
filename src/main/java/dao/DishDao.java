@@ -2,6 +2,7 @@ package dao;
 
 import context.JDBIContext;
 import model.Dish;
+
 import java.util.List;
 
 public class DishDao {
@@ -19,15 +20,14 @@ public class DishDao {
                 .mapToBean(Dish.class)
                 .findOne().orElse(null));
     }
-
-    // 20.2.4: Tìm món ăn theo từ khóa
+    // 20.2.4: Thực hiện truy vấn cơ sở dữ liệu dựa trên keyword
     public List<Dish> findDishes(String keyword) {
-        System.out.println("==> [DishDao] Searching for keyword: " + keyword);
+        System.out.println("Searching for keyword: " + keyword);
         return JDBIContext.getJdbi().withHandle(handle ->
                 handle.createQuery("SELECT * FROM dishes WHERE name LIKE :keyword")
                         .bind("keyword", "%" + keyword + "%")
                         .mapToBean(Dish.class)
-                        .list()
+                        .list() // 20.2.4: Trả về danh sách kết quả hoặc rỗng
         );
     }
 }

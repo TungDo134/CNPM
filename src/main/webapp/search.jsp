@@ -139,12 +139,13 @@
 
         <div class="row">
             <c:choose>
+                <%-- 20.2.5: Hiển thị danh sách sản phẩm phù hợp --%>
                 <c:when test="${not empty dishes}">
                     <c:forEach items="${dishes}" var="ds">
                         <div class="col-lg-4 col-md-6 text-center">
                             <div class="single-product-item">
                                 <div class="product-image">
-                                    <img src="${pageContext.request.contextPath}/${ds.img}" alt="${ds.name}">
+                                  <a href="single-product.html"><img src="${pageContext.request.contextPath}/assets/img/products/${ds.img}" alt="${ds.name}"></a>
                                 </div>
                                 <h3>${ds.name}</h3>
                                 <p class="product-price" style="font-size: 20px">
@@ -156,15 +157,24 @@
                         </div>
                     </c:forEach>
                 </c:when>
-                <c:otherwise>
+
+                <%-- 20.3.1: Hệ thống không tìm thấy sản phẩm nào khớp với từ khóa --%>
+                 <c:otherwise>
                     <div class="col-12 text-center">
+                        <%--20.3.2: Hệ thống hiển thị thông báo: "Không tìm thấy kết quả phù hợp"--%>
                         <p>Không tìm thấy kết quả phù hợp.</p>
+                            <%-- 20.4.1: Cho phép tìm kiếm lại --%>
+                        <form method="get" action="${pageContext.request.contextPath}/search" class="mt-3">
+                            <input type="text" name="keyword" placeholder="Tìm kiếm lại..." class="form-control w-50 d-inline-block" />
+                            <button type="submit" class="btn btn-primary ml-2">Tìm kiếm</button>
+                        </form>
                     </div>
                 </c:otherwise>
             </c:choose>
         </div>
     </div>
 </div>
+
 
 <!-- footer -->
 <div class="footer-area">
