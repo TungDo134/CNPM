@@ -195,7 +195,7 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
            aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html "
+        <a class="navbar-brand m-0" href="#"
            target="_blank">
             <img src="<%=request.getContextPath()%>/assets/img/logo-ct-dark.png" class="navbar-brand-img h-100"
                  alt="main_logo">
@@ -252,9 +252,13 @@
                         <td>${menu.createdAt}</td>
                             <%--<td>${menu.updatedAt}</td>--%>
                         <td class="action-buttons">
+
+                                <%-- Todo: 9.1.1.3 Nhấn chọn "Xem món" từ menu cụ thể
+                                     Todo: // để hiển thị danh sách món ăn của menu đó --%>
                             <button class="view-btn"><a style="color: inherit; text-decoration: none"
                                                         href="<%=request.getContextPath()%>/get-dishes?menuID=${menu.id}">Xem
                                 món</a></button>
+
                             <button
                                     class="edit-btn"
                                     onclick="showMenuEditForm('${menu.id}', '${menu.name}', '${menu.description}')"
@@ -314,17 +318,17 @@
                                 <c:if test="${dish.available!=1}">
                                     Không có
                                 </c:if>
-
                             </td>
+
                             <td class="action-buttons">
                                 <button
                                         class="edit-btn"
-                                    <%-- 9.1.1.5 Kích hoạt sự kiện onClick, gọi đến hàm showDishEditForm--%>
-                                        onclick="showDishEditForm('${dish.id}', '${dish.menuId}', '${dish.name}', '${dish.description}', ${dish.price}, ${dish.available})"
-                                >
+                                    <%-- Todo: 9.1.1.4 Tìm món ăn cần chỉnh sửa và chọn nút "Chỉnh sửa" --%>
+                                        onclick="showDishEditForm('${dish.id}', '${dish.menuId}', '${dish.name}', '${dish.description}', ${dish.price}, ${dish.available})">
                                     Chỉnh Sửa
                                 </button>
-                                <button class="delete-btn" onclick="alert('Xóa món Phở Bò')">
+
+                                <button class="delete-btn">
                                     Xóa
                                 </button>
                             </td>
@@ -333,35 +337,6 @@
                     </tbody>
                 </table>
 
-            </div>
-        </div>
-
-        <!-- Menu Edit Modal -->
-        <div class=" modal
-                " id="menuEditModal">
-            <div class="modal-content">
-                <h3>Sửa Menu</h3>
-                <form id="menuEditForm">
-                    <label for="menuId">ID</label>
-                    <input type="text" id="menuId" readonly/>
-
-                    <label for="menuName">Tên Menu</label>
-                    <input type="text" id="menuName" required/>
-
-                    <label for="menuDescription">Mô tả</label>
-                    <textarea id="menuDescription"></textarea>
-
-                    <label for="menuCreatedAt">Ngày tạo</label>
-                    <input type="text" id="menuCreatedAt" readonly/>
-
-                    <label for="menuUpdatedAt">Cập nhật</label>
-                    <input type="text" id="menuUpdatedAt" readonly/>
-
-                    <button type="submit" class="save-btn">Lưu</button>
-                    <button type="button" class="cancel-btn" onclick="closeModals()">
-                        Hủy
-                    </button>
-                </form>
             </div>
         </div>
 
@@ -394,7 +369,9 @@
                     <label for="dishUpdatedAt">Cập nhật</label>
                     <input type="text" id="dishUpdatedAt" name="dishUpdatedAt" readonly/>
 
+                    <%-- Todo: 9.1.1.6 Người dùng chỉnh sửa thông tin cần thiết và bấm "Lưu" --%>
                     <button type="submit" class="save-btn">Lưu</button>
+
                     <button type="button" class="cancel-btn" onclick="closeModals()">
                         Hủy
                     </button>
@@ -408,8 +385,8 @@
 
 <!-- Script Custom -->
 <script>
-    // 9.1.1.5 Gọi đến hàm showDishEditForm
-    // nhận vào các thông tin của món ăn cần chỉnh và hiển thị
+    // 9.1.1.5 Kích hoạt sự kiện onClick
+    // Gọi hàm showDishEditForm nhận vào các thông tin của món ăn cần chỉnh và hiển thị
     function showDishEditForm(id, menuId, name, description, price, available) {
         document.getElementById("dishEditModal").style.display = "block";
         document.getElementById("dishId").value = id;
@@ -422,21 +399,19 @@
         document.getElementById("dishUpdatedAt").value = "2025-05-16";
     }
 
-    // 9.1.1.6 Kích hoạt sự kiện submit của form,
-    // Gọi đến hàm checkIsDataValid
     document.getElementById('dishEditForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-            // 9.1.1.6 Tạo FormData từ form người dùng chỉnh sửa
+
+            // 9.1.1.7 Tạo FormData từ form người dùng chỉnh sửa
             let formData = new URLSearchParams(new FormData(this));
             let url = `${pageContext.request.contextPath}/edit-dish`
 
-            // 9.1.1.7 Gọi đến hàm checkIsDataValid nhận vào tên và giá món ăn
+            // 9.1.1.8 Gọi đến hàm checkIsDataValid nhận vào tên và giá món ăn
+            // Kích hoạt sự kiện submit của form, gọi đến hàm checkIsDataValid nhận vào tên và giá món ăn
             if (!checkIsValidData(formData.get('dishName'), formData.get('dishPrice'))) return;
-            // 9.1.2.6 return true (Dữ liệu hợp lệ)
-            // 9.1.2.16 return false (Dữ liệu không hợp lệ)
 
             try {
-                // 9.1.2.8 Gửi fetch request POST đến /edit-dish
+                // 9.1.2.2 Gửi fetch request POST đến /edit-dish
                 // (Headers: application/x-www-form-urlencoded,Body: formData)
                 let response = await fetch(url, {
                     method: 'Post',
@@ -484,13 +459,16 @@
 
         // Nếu có lỗi, hiển thị thông báo và dừng gửi dữ liệu
         if (!isValid) {
+            // 9.1.2.11 Hiển thị alert báo lỗi
             alert(errorMessage);
         }
+        // 9.1.2.1 return true (Dữ liệu hợp lệ)
+        // 9.1.2.10 return false (Dữ liệu không hợp lệ)
         return isValid;
     }
 
     function closeModals() {
-        document.getElementById("menuEditModal").style.display = "none";
+        // document.getElementById("menuEditModal").style.display = "none";
         document.getElementById("dishEditModal").style.display = "none";
     }
 

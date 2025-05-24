@@ -19,12 +19,12 @@ public class MenuService {
         return dao.getAllDishByMenuID(menuID);
     }
 
-    // 9.1.2.13 Hàm cập nhật món ăn
+    // 9.1.2.7 Hàm cập nhật món ăn
     public boolean updateDish(Dish dish) {
         MenuDao dao = new MenuDao();
 
-        // 9.1.3.1 return true (có ít nhất một dòng được cập nhật)
-        // 9.1.3.5 return false (nếu không có dòng nào được cập nhật)
+        // 9.1.3.1 return true  (có ít nhất một dòng bị ảnh hưởng, row affected > 0)
+        // 9.1.3.4 return false (không có dòng nào bị ảnh hưởng, row affected != 0)
         return dao.updateDish(dish);
     }
 
