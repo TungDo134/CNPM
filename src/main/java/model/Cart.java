@@ -7,12 +7,14 @@ import java.util.Date;
 public class Cart implements Serializable {
     private int id;
     private int userId;
-    private LocalDate createAt;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
     public Cart() {}
-    public Cart(int id, int userId, LocalDate createAt) {
+    public Cart(int id, int userId, LocalDate createdAt, LocalDate updatedAt) {
         this.id = id;
         this.userId = userId;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getUserId() {
@@ -31,21 +33,29 @@ public class Cart implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getCreateAt() {
-        return createAt;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDate createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     @Override
     public String toString() {
         return "Cart{" +
                 "id=" + id +
                 ", userId=" + userId +
-                ", createAt=" + createAt +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

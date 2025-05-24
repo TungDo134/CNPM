@@ -11,6 +11,14 @@ public class DishDao {
                 (handle.createQuery("select * from dishes").mapToBean(Dish.class).list())
         );
     }
+    //get id
+    public Dish getDishById(int id) {
+        return JDBIContext.getJdbi().withHandle(handle ->handle.createQuery(
+                        " select * from dishes where id= :id")
+                .bind("id", id)
+                .mapToBean(Dish.class)
+                .findOne().orElse(null));
+    }
 
     // 20.2.4: Tìm món ăn theo từ khóa
     public List<Dish> findDishes(String keyword) {

@@ -36,6 +36,28 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/responsive.css">
 
     <script src="assets/js/search.js"></script>
+    <style>
+        body{
+            font-family:  Arial, sans-serif;
+        }
+        .shopping-cart {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 15px;
+            right: 2px;
+            background-color: red;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 50%;
+            line-height: 1;
+        }
+    </style>
 </head>
 <body>
 
@@ -98,8 +120,14 @@
                                 </ul>
                             </li>
                             <li>
+                                <!--5.1.8 Nhấn chọn vào biểu tượng giỏ hàng-->
                                 <div class="header-icons">
-                                    <a class="shopping-cart" href="/CNPM/cart"><i class="fas fa-shopping-cart"></i></a>
+                                    <a class="shopping-cart" href="/CNPM/cart">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <c:if test="${totalQuantity > 0}">
+                                            <span class="cart-count">${totalQuantity}</span>
+                                        </c:if>
+                                    </a>
                                     <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                 </div>
                             </li>
@@ -220,6 +248,7 @@
         </div>
 
         <div class="row">
+            <!--5.1.1 Danh sách sản phẩm-->
             <c:forEach items="${dishes}" var="ds">
                 <div class="col-lg-4 col-md-6 text-center">
                     <div class="single-product-item">
@@ -228,7 +257,7 @@
                         </div>
                         <h3>${ds.name}</h3>
                         <p class="product-price" style="font-size: 20px"><f:formatNumber currencySymbol="đ" value="${ds.price}"/>VNĐ</p>
-
+                        <!--5.1.2 Nhấn chọn "Add to Cart"-->
                         <a href="add-cart?dishId=${ds.id}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                     </div>
                 </div>
