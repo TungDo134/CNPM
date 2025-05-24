@@ -24,7 +24,7 @@ public class MenuService {
         MenuDao dao = new MenuDao();
 
         // 9.1.3.1 return true  (có ít nhất một dòng bị ảnh hưởng, row affected > 0)
-        // 9.1.3.4 return false (không có dòng nào bị ảnh hưởng, row affected < 0)
+        // 9.1.3.4 return false (không có dòng nào bị ảnh hưởng, row affected != 0)
         return dao.updateDish(dish);
     }
 
