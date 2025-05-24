@@ -23,8 +23,8 @@ public class MenuService {
     public boolean updateDish(Dish dish) {
         MenuDao dao = new MenuDao();
 
-        // 9.1.3.1 return true (có ít nhất một dòng được cập nhật)
-        // 9.1.3.4 return false (nếu không có dòng nào được cập nhật)
+        // 9.1.3.1 return true  (có ít nhất một dòng bị ảnh hưởng, row affected > 0)
+        // 9.1.3.4 return false (không có dòng nào bị ảnh hưởng, row affected < 0)
         return dao.updateDish(dish);
     }
 

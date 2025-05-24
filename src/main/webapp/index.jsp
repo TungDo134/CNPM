@@ -1,4 +1,4 @@
- <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+    <meta name="description"
+          content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
     <!-- title -->
     <title>Fruitkha</title>
@@ -73,6 +74,8 @@
                             <li><a href="about.html">About</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="sub-menu">
+                                    <%--Todo:  9.1.1.1 Chọn "Quản lí menu và món ăn" --%>
+                                    <li><a href="pages/dashboard.jsp">Admin Dashboard</a></li>
                                     <li><a href="404.html">404 page</a></li>
                                     <li><a href="about.html">About</a></li>
                                     <li><a href="cart.html">Cart</a></li>
@@ -125,7 +128,8 @@
                     <div class="search-bar-tablecell" style="position: relative;">
                         <h3>Search For:</h3>
 
-                        <form id="searchForm" method="get" action="${pageContext.request.contextPath}/search" autocomplete="off">
+                        <form id="searchForm" method="get" action="${pageContext.request.contextPath}/search"
+                              autocomplete="off">
                             <input type="text" id="search-input" name="keyword" placeholder="Nhập từ khóa"/>
                             <button type="submit">Search <i class="fas fa-search"></i></button>
                         </form>
@@ -214,7 +218,8 @@
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="section-title">
                     <h3><span class="orange-text">Our</span> Products</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet
+                        beatae optio.</p>
                 </div>
             </div>
         </div>
@@ -227,9 +232,11 @@
                             <a href="single-product.html"><img src="${ds.img}" alt=""></a>
                         </div>
                         <h3>${ds.name}</h3>
-                        <p class="product-price" style="font-size: 20px"><f:formatNumber currencySymbol="đ" value="${ds.price}"/>VNĐ</p>
+                        <p class="product-price" style="font-size: 20px"><f:formatNumber currencySymbol="đ"
+                                                                                         value="${ds.price}"/>VNĐ</p>
 
-                        <a href="add-cart?dishId=${ds.id}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        <a href="add-cart?dishId=${ds.id}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to
+                            Cart</a>
                     </div>
                 </div>
             </c:forEach>
@@ -259,9 +266,27 @@
             <div class="content-column col-lg-6">
                 <h3><span class="orange-text">Deal</span> of the month</h3>
                 <h4>Hikan Strwaberry</h4>
-                <div class="text">Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</div>
+                <div class="text">Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique!
+                    Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem
+                    accusant
+                </div>
                 <!--Countdown Timer-->
-                <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2020/2/01"><div class="counter-column"><div class="inner"><span class="count">00</span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Secs</div></div></div></div>
+                <div class="time-counter">
+                    <div class="time-countdown clearfix" data-countdown="2020/2/01">
+                        <div class="counter-column">
+                            <div class="inner"><span class="count">00</span>Days</div>
+                        </div>
+                        <div class="counter-column">
+                            <div class="inner"><span class="count">00</span>Hours</div>
+                        </div>
+                        <div class="counter-column">
+                            <div class="inner"><span class="count">00</span>Mins</div>
+                        </div>
+                        <div class="counter-column">
+                            <div class="inner"><span class="count">00</span>Secs</div>
+                        </div>
+                    </div>
+                </div>
                 <a href="cart.html" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
             </div>
         </div>
@@ -282,7 +307,9 @@
                         <div class="client-meta">
                             <h3>Saira Hakim <span>Local shop owner</span></h3>
                             <p class="testimonial-body">
-                                " Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+                                " Sed ut perspiciatis unde omnis iste natus error veritatis et quasi architecto beatae
+                                vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus
+                                error sit voluptatem accusantium "
                             </p>
                             <div class="last-icon">
                                 <i class="fas fa-quote-right"></i>
@@ -296,7 +323,9 @@
                         <div class="client-meta">
                             <h3>David Niph <span>Local shop owner</span></h3>
                             <p class="testimonial-body">
-                                " Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+                                " Sed ut perspiciatis unde omnis iste natus error veritatis et quasi architecto beatae
+                                vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus
+                                error sit voluptatem accusantium "
                             </p>
                             <div class="last-icon">
                                 <i class="fas fa-quote-right"></i>
@@ -310,7 +339,9 @@
                         <div class="client-meta">
                             <h3>Jacob Sikim <span>Local shop owner</span></h3>
                             <p class="testimonial-body">
-                                " Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+                                " Sed ut perspiciatis unde omnis iste natus error veritatis et quasi architecto beatae
+                                vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus
+                                error sit voluptatem accusantium "
                             </p>
                             <div class="last-icon">
                                 <i class="fas fa-quote-right"></i>
@@ -330,15 +361,19 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div class="abt-bg">
-                    <a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
+                    <a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" class="video-play-btn popup-youtube"><i
+                            class="fas fa-play"></i></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div class="abt-text">
                     <p class="top-sub">Since Year 1999</p>
                     <h2>We are <span class="orange-text">Fruitkha</span></h2>
-                    <p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum velit. Nam eu molestie lorem.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p>
+                    <p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel
+                        nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed,
+                        interdum velit. Nam eu molestie lorem.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat
+                        veritatis minus, et labore minima mollitia qui ducimus.</p>
                     <a href="about.html" class="boxed-btn mt-4">know more</a>
                 </div>
             </div>
@@ -365,7 +400,8 @@
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="section-title">
                     <h3><span class="orange-text">Our</span> News</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet
+                        beatae optio.</p>
                 </div>
             </div>
         </div>
@@ -373,43 +409,55 @@
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="single-latest-news">
-                    <a href="single-news.html"><div class="latest-news-bg news-bg-1"></div></a>
+                    <a href="single-news.html">
+                        <div class="latest-news-bg news-bg-1"></div>
+                    </a>
                     <div class="news-text-box">
                         <h3><a href="single-news.html">You will vainly look for fruit on it in autumn.</a></h3>
                         <p class="blog-meta">
                             <span class="author"><i class="fas fa-user"></i> Admin</span>
                             <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
                         </p>
-                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
-                        <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
+                            Praesent vitae mattis nunc, egestas viverra eros.</p>
+                        <a href="single-news.html" class="read-more-btn">read more <i
+                                class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="single-latest-news">
-                    <a href="single-news.html"><div class="latest-news-bg news-bg-2"></div></a>
+                    <a href="single-news.html">
+                        <div class="latest-news-bg news-bg-2"></div>
+                    </a>
                     <div class="news-text-box">
                         <h3><a href="single-news.html">A man's worth has its season, like tomato.</a></h3>
                         <p class="blog-meta">
                             <span class="author"><i class="fas fa-user"></i> Admin</span>
                             <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
                         </p>
-                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
-                        <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
+                            Praesent vitae mattis nunc, egestas viverra eros.</p>
+                        <a href="single-news.html" class="read-more-btn">read more <i
+                                class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                 <div class="single-latest-news">
-                    <a href="single-news.html"><div class="latest-news-bg news-bg-3"></div></a>
+                    <a href="single-news.html">
+                        <div class="latest-news-bg news-bg-3"></div>
+                    </a>
                     <div class="news-text-box">
                         <h3><a href="single-news.html">Good thoughts bear good fresh juicy fruit.</a></h3>
                         <p class="blog-meta">
                             <span class="author"><i class="fas fa-user"></i> Admin</span>
                             <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
                         </p>
-                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
-                        <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
+                            Praesent vitae mattis nunc, egestas viverra eros.</p>
+                        <a href="single-news.html" class="read-more-btn">read more <i
+                                class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -458,7 +506,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box about-widget">
                     <h2 class="widget-title">About us</h2>
-                    <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+                    <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                        doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -503,7 +552,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
+                <p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>, All Rights
+                    Reserved.<br>
                     Distributed By - <a href="https://themewagon.com/">Themewagon</a>
                 </p>
             </div>

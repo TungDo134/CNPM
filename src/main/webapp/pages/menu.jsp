@@ -195,7 +195,7 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
            aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html "
+        <a class="navbar-brand m-0" href="#"
            target="_blank">
             <img src="<%=request.getContextPath()%>/assets/img/logo-ct-dark.png" class="navbar-brand-img h-100"
                  alt="main_logo">
@@ -254,7 +254,7 @@
                         <td class="action-buttons">
 
                                 <%-- Todo: 9.1.1.3 Nhấn chọn "Xem món" từ menu cụ thể
-                                     Todo: để hiển thị danh sách món ăn của menu đó --%>
+                                     Todo: // để hiển thị danh sách món ăn của menu đó --%>
                             <button class="view-btn"><a style="color: inherit; text-decoration: none"
                                                         href="<%=request.getContextPath()%>/get-dishes?menuID=${menu.id}">Xem
                                 món</a></button>
@@ -369,7 +369,7 @@
                     <label for="dishUpdatedAt">Cập nhật</label>
                     <input type="text" id="dishUpdatedAt" name="dishUpdatedAt" readonly/>
 
-                    <%-- Todo: Người dùng chỉnh sửa thông tin cần thiết và bấm "Lưu" --%>
+                    <%-- Todo: 9.1.1.6 Người dùng chỉnh sửa thông tin cần thiết và bấm "Lưu" --%>
                     <button type="submit" class="save-btn">Lưu</button>
 
                     <button type="button" class="cancel-btn" onclick="closeModals()">

@@ -36,14 +36,8 @@ public class MenuDao {
                     .bind(6, dish.getUpdatedAt())
                     .bind(7, dish.getId())
                     .execute();
-            // 9.1.2.9 return row affected (số dòng bị ảnh hưởng
-            // hay đơn giản là số món ăn đã được cập nhật)
+            // 9.1.2.9 return row affected (số dòng bị ảnh hưởng)
             return updatedRows > 0;
         });
     }
-
-//    public static void main(String[] args) {
-//        MenuDao dao = new MenuDao();
-//        System.out.println(dao.getAllDishByMenuID(1));
-//    }
 }
