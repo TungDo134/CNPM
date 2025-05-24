@@ -9,10 +9,12 @@ public class CartDao {
     // Tạo giỏ hàng mới
     public Cart createCart() {
         return JDBIContext.getJdbi().withHandle(handle -> {
+            LocalDate updatedAt = LocalDate.now();
             // Insert giỏ hàng mới và lấy id sinh ra
-            int cartId = handle.createUpdate("INSERT INTO carts (userId, createAt) VALUES (:userId, :createAt)")
+            int cartId = handle.createUpdate("INSERT INTO carts (userId, createdAt, updatedAt) VALUES (:userId, :createdAt, :updatedAt)")
                     .bind("userId", 1) // set la 1
-                    .bind("createAt", LocalDate.now())
+                    .bind("createdAt", LocalDate.now())
+                    .bind("updatedAt", updatedAt)
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class)
                     .one();
@@ -20,7 +22,7 @@ public class CartDao {
             // Trả về đối tượng Cart
             Cart cart = new Cart();
             cart.setId(cartId);
-            cart.setCreateAt(LocalDate.now());
+            cart.setCreatedAt(LocalDate.now());
 
             return cart;
         });

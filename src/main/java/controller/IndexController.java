@@ -15,11 +15,26 @@ public class IndexController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Truy vấn cơ sở dữ liệu
-        DishService ds = new DishService();
-        List<Dish> dishes = ds.getAll();
+        HttpSession session = request.getSession();
+        Integer cartId = (Integer) session.getAttribute("cartId");
+
+        // Nếu chưa có cartId trong session, tạo mới cart
+        if (cartId == null) {
+            dao.CartDao cartDao = new dao.CartDao();
+            model.Cart cart = cartDao.createCart();
+            cartId = cart.getId();
+            session.setAttribute("cartId", cartId);
+        }
+
+        int totalQuantity = 0;
+        service.DishService ds = new service.DishService();
+        List<model.Dish> dishes = ds.getAll();
         request.setAttribute("dishes", dishes);
 
+        service.CartItemService cartItemService = new service.CartItemService();
+        totalQuantity = cartItemService.getTotalQuantity(cartId);
+
+        request.setAttribute("totalQuantity", totalQuantity);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

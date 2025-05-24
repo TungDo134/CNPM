@@ -4,11 +4,14 @@ import context.JDBIContext;
 import model.CartItem;
 import model.Dish;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CartItemDao {
     //them mon an vao gio hang
-    public void addOrUpdateItem(int cartId, int dishId, int quantity, double totalAmount) {
+    //CartItemService.java gọi CartItemDao.java để lưu dữ liệu vào cơ sở dữ liệu
+    //5.1.5 addCartItem(cartId, dishId, quantity)
+    public void addOrUpdateItem(int cartId, int dishId, int quantity) {
         JDBIContext.getJdbi().useHandle(handle -> {
             // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
             String checkSql = "SELECT quantity FROM cart_items WHERE cartId= :cartId AND dishId= :dishId";
@@ -21,28 +24,34 @@ public class CartItemDao {
 
             if (existingQty != null) {
                 // Đã có: cập nhật số lượng
-                handle.createUpdate("UPDATE cart_items SET quantity = :newQty, totalAmount = :totalAmount WHERE cartId = :cartId AND dishId = :dishId")
+                handle.createUpdate("UPDATE cart_items SET quantity = :newQty WHERE cartId = :cartId AND dishId = :dishId")
                         .bind("newQty", existingQty + quantity)
-                        .bind("totalAmount", totalAmount)
                         .bind("cartId", cartId)
                         .bind("dishId", dishId)
                         .execute();
             } else {
                 // Chưa có: thêm mới
-                handle.createUpdate("INSERT INTO cart_items (cartId, dishId, quantity, totalAmount) VALUES (:cartId, :dishId, :quantity, :totalAmount)")
+                LocalDate createdAt = LocalDate.now();
+                LocalDate updatedAt = LocalDate.now();
+                //5.1.6 Thực hiện truy vấn INSERT vào bảng cart_items
+                handle.createUpdate("INSERT INTO cart_items (cartId, dishId, quantity, createdAt, updatedAt) VALUES (:cartId, :dishId, :quantity, :createdAt, :updatedAt)")
                         .bind("cartId", cartId)
                         .bind("dishId", dishId)
                         .bind("quantity", quantity)
-                        .bind("totalAmount", totalAmount)
+                        .bind("createdAt", createdAt)
+                        .bind("updatedAt", updatedAt)
                         .execute();
             }
         });
     }
     //hien thi danh sach mon an voi cartId tuong ung
+    // Lấy dữ liệu từ cơ sở dữ liệu
+    //5.1.11 getCartItems(int cartId).
     public List<CartItem> getCartItems(int cartId) {
         return JDBIContext.getJdbi().withHandle(handle ->
-                handle.createQuery(
-                                "SELECT ci.id AS cartItemId, ci.cartId, ci.dishId, d.name, ci.totalAmount, ci.quantity, d.price, d.img," +
+                //5.1.12 Thực hiện truy vấn SELECT để lấy ra danh sách món ăn
+        handle.createQuery(
+                                "SELECT ci.id AS cartItemId, ci.cartId, ci.dishId, d.name, ci.quantity, ci.createdAt, ci.updatedAt, d.price, d.img," +
                                         " d.id AS dish, d.menuId, d.description, d.createdAt, d.updatedAt, d.available " +
                                         "FROM cart_items ci " +
                                         "JOIN dishes d ON ci.dishId = d.id " +
@@ -53,7 +62,8 @@ public class CartItemDao {
                                 rs.getInt("cartId"),
                                 rs.getInt("dishId"),
                                 rs.getInt("quantity"),
-                                rs.getDouble("totalAmount"),
+                                rs.getDate("createdAt"),
+                                rs.getDate("updatedAt"),
                                 new Dish(
                                         rs.getInt("dish"),
                                         rs.getInt("menuId"),
@@ -70,7 +80,7 @@ public class CartItemDao {
     }
     public static void main(String[] args){
         CartItemDao dao = new CartItemDao();
-        dao.addOrUpdateItem(1, 2, 1, 20000);
+        dao.addOrUpdateItem(1, 2, 1);
         for(CartItem ci : dao.getCartItems(1)){
             System.out.println(ci);
         }
