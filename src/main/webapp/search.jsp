@@ -145,7 +145,7 @@
                         <div class="col-lg-4 col-md-6 text-center">
                             <div class="single-product-item">
                                 <div class="product-image">
-                                  <a href="single-product.html"><img src="${pageContext.request.contextPath}/assets/img/products/${ds.img}" alt="${ds.name}"></a>
+                                  <a href="single-product.html"><img src="${ds.img}" alt="${ds.name}"></a>
                                 </div>
                                 <h3>${ds.name}</h3>
                                 <p class="product-price" style="font-size: 20px">
