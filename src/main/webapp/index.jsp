@@ -163,7 +163,6 @@
                         <!-- 20.2.1: Người dùng nhập từ khóa vào thanh tìm kiếm -->
                         <!-- 20.2.2: Người dùng nhấn nút tìm kiếm hoặc Enter -->
                         <form id="searchForm" method="get" action="${pageContext.request.contextPath}/search" autocomplete="off">
->>>>>>> main
                             <input type="text" id="search-input" name="keyword" placeholder="Nhập từ khóa"/>
                             <button type="submit">Search <i class="fas fa-search"></i></button>
                         </form>
@@ -267,17 +266,9 @@
                             <a href="single-product.html"><img src="${ds.img}" alt=""></a>
                         </div>
                         <h3>${ds.name}</h3>
-<<<<<<< HEAD
-                        <p class="product-price" style="font-size: 20px"><f:formatNumber currencySymbol="đ"
-                                                                                         value="${ds.price}"/>VNĐ</p>
-
-                        <a href="add-cart?dishId=${ds.id}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to
-                            Cart</a>
-=======
                         <p class="product-price" style="font-size: 20px"><f:formatNumber currencySymbol="đ" value="${ds.price}"/>VNĐ</p>
                         <!--5.1.2 Nhấn chọn "Add to Cart"-->
                         <a href="add-cart?dishId=${ds.id}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
->>>>>>> main
                     </div>
                 </div>
             </c:forEach>
