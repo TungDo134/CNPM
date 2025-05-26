@@ -163,7 +163,6 @@
                         <!-- 20.2.1: Người dùng nhập từ khóa vào thanh tìm kiếm -->
                         <!-- 20.2.2: Người dùng nhấn nút tìm kiếm hoặc Enter -->
                         <form id="searchForm" method="get" action="${pageContext.request.contextPath}/search" autocomplete="off">
->>>>>>> main
                             <input type="text" id="search-input" name="keyword" placeholder="Nhập từ khóa"/>
                             <button type="submit">Search <i class="fas fa-search"></i></button>
                         </form>

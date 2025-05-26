@@ -18,7 +18,6 @@ public class SearchServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 20.2.2: Hệ thống tiếp nhận từ khóa tìm kiếm
         String keyword = request.getParameter("keyword");
         if (keyword == null || keyword.trim().isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/");

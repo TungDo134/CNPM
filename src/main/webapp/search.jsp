@@ -145,7 +145,7 @@
                         <div class="col-lg-4 col-md-6 text-center">
                             <div class="single-product-item">
                                 <div class="product-image">
-                                  <a href="single-product.html"><img src="${pageContext.request.contextPath}/assets/img/products/${ds.img}" alt="${ds.name}"></a>
+                                  <a href="single-product.html"><img src="${pageContext.request.contextPath}/assets/img/${ds.img}" alt="${ds.name}"></a>
                                 </div>
                                 <h3>${ds.name}</h3>
                                 <p class="product-price" style="font-size: 20px">
@@ -163,7 +163,7 @@
                     <div class="col-12 text-center">
                         <%--20.3.2: Hệ thống hiển thị thông báo: "Không tìm thấy kết quả phù hợp"--%>
                         <p>Không tìm thấy kết quả phù hợp.</p>
-                            <%-- 20.4.1: Cho phép tìm kiếm lại --%>
+                            <%-- 20.3.3 Hiện form tìm kiếm lại --%>
                         <form method="get" action="${pageContext.request.contextPath}/search" class="mt-3">
                             <input type="text" name="keyword" placeholder="Tìm kiếm lại..." class="form-control w-50 d-inline-block" />
                             <button type="submit" class="btn btn-primary ml-2">Tìm kiếm</button>

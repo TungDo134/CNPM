@@ -9,7 +9,6 @@ input.addEventListener('input', () => {
         return;
     }
 
-    // 20.4.1: Gợi ý người dùng nhập lại từ khóa mới sau khi không có kết quả
     fetch(`${contextPath}/search-suggest?keyword=` + encodeURIComponent(keyword))
         .then(response => response.json())
         .then(data => {
